@@ -15,8 +15,8 @@
         <b-input class="mb-1"  v-model="inputProjectModel.name" />
       </b-form-group>
 
-            <b-form-group label="Opis">
-        <b-input class="mb-1"  v-model="inputProjectModel.description" />
+            <b-form-group label="Tytuł">
+        <b-input class="mb-1"  v-model="inputProjectModel.title" />
       </b-form-group>
 
       <b-form-group label="Klient Sektor" >
@@ -87,8 +87,9 @@
 <script>
 import axios from "axios";
 import Vue from "vue";
-
+import swal from 'sweetalert';
 import Multiselect from "vue-multiselect";
+import ProjectVue from './Project.vue';
 
 export default {
   name: "Add-Project",
@@ -101,7 +102,7 @@ export default {
   data: () => ({
     inputProjectModel: {
       name: "",
-      description: "",
+      title: "",
       clientSector: "",
       startDate: "",
       endDate: ""
@@ -155,9 +156,20 @@ export default {
               console.log("response "+response.data)
             });
 
+          // location.reload();
+
+
+        swal({
+          title: "Sukces!",
+          text: "Dodano projekt do bazy!",
+          icon: "success",
+            });
+
+
+    },
     }
   }
-}
+
 </script>
 
 <style scoped>

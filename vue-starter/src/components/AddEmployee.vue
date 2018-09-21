@@ -6,35 +6,25 @@
       <b-card-body class="pb-2">
 
         <b-form-group label="Imię">
-          <b-input class="mb-1" v-model="inputEmployeeModel.name" />
+          <b-input class="mb-1" v-model="employeeInputModel.name" />
         </b-form-group>
 
         <b-form-group label="Nazwisko">
-          <b-input class="mb-1" v-model="inputEmployeeModel.lastName" />
+          <b-input class="mb-1" v-model="employeeInputModel.lastName" />
         </b-form-group>
 
         <b-form-group label="Specjalizacja">
-          <b-input class="mb-1"  v-model="inputEmployeeModel.specialization"/>
+          <b-input class="mb-1"  v-model="employeeInputModel.specialization"/>
         </b-form-group>
 
-        <!-- <b-form-group label="Ocena">
-        <b-input class="mb-1" />
-      </b-form-group> -->
+        <b-form-group label="Lata pracy">
+          <b-input class="mb-1" v-model="employeeInputModel.yearsOfWork" />
+        </b-form-group>
+
         <b-form-group label="Rating">
-          <b-radio-group v-model="multipleModel" :options="options3" />
+          <b-radio-group v-model="multipleModelRating" :options="optionsRating" />
         </b-form-group>
 
-        <b-form-group label="Kadencja">
-          <b-input class="mb-1" v-model="inputEmployeeModel.yearsOfWork" />
-        </b-form-group>
-
-        <!-- <b-form-group label="Projekt">
-          <b-select v-model="selectedproject">
-            <option v-for=" proj in projects">
-              {{proj.name}}
-            </option>
-          </b-select>
-        </b-form-group> -->
         <b-form-group label="Projekt">
           <multiselect v-model="selectedproject" label="name" track-by="id" placeholder="Wybierz projekt" :options="projects"
             :multiple="true" :searchable="true" :internal-search="false" :clear-on-select="false" :close-on-select="false"
@@ -43,13 +33,15 @@
           </multiselect>
         </b-form-group>
 
-        <!-- <b-form-group label="Język" v-if="languages.length">
-          <b-select v-model="selectedlanguage">
-            <option v-for=" lang in languages">
-              {{lang.languageName}}
-            </option>
-          </b-select>
-        </b-form-group> -->
+
+        <b-form-group label="Umiejętności">
+          <multiselect v-model="selectedskill" label="skillName" track-by="id" placeholder="Wybierz umiejętność" :options="skills"
+            :multiple="true" :searchable="true" :internal-search="false" :clear-on-select="false" :close-on-select="false"
+            :hide-selected="true">
+            <span slot="noResult">No frameworks found.</span>
+          </multiselect>
+        </b-form-group>
+
 
         <b-form-group label="Język">
           <multiselect v-model="selectedlanguage" label="languageName" track-by="id" placeholder="Wybierz język" :options="languages"
@@ -66,50 +58,26 @@
 
             <div class="row">
               <b-form-group label="Stopień w mowie">
-                <b-radio-group v-model="language.speak" :options="options" />
-                <!-- <fieldset disabled>
-            <b-radio-group v-model="singleModel" :options="options" />
-          </fieldset> -->
+                <b-radio-group v-model="language.speak" :options="optionsSpeaking" />
               </b-form-group>
             </div>
 
             <div class="row">
               <b-form-group label="Stopień w czytaniu">
-                <b-radio-group v-model="language.read" :options="options" />
+                <b-radio-group v-model="language.read" :options="optionsReading" />
               </b-form-group>
             </div>
 
             <div class="row">
               <b-form-group label="Stopień w piśmie">
-                <b-radio-group v-model="language.write" :options="options" />
+                <b-radio-group v-model="language.write" :options="optionsWriting" />
               </b-form-group>
             </div>
           </div>
         </div>
 
-<!-- <b-form-group label="Umiejętności">
-          <b-select v-model="selectedskill">
-            <option v-for=" skil in skills">
-              {{skil.skillName}}
-            </option>
-          </b-select>
-        </b-form-group> -->
-
-
-<b-form-group label="Umiejętności">
-          <multiselect v-model="selectedskill" label="skillName" track-by="id" placeholder="Wybierz umiejętność" :options="skills"
-            :multiple="true" :searchable="true" :internal-search="false" :clear-on-select="false" :close-on-select="false"
-            :hide-selected="true">
-            <span slot="noResult">No frameworks found.</span>
-          </multiselect>
-        </b-form-group>
-
-        <b-form-group label="Doświadczenie w latach">
-          <b-input class="mb-1" />
-        </b-form-group>
-
         <b-form-group label="Stopień">
-          <b-radio-group v-model="multipleModel2" :options="options2" />
+          <b-radio-group v-model="multipleModelLevel" :options="optionsLevel" />
         </b-form-group>
 
         <button type="submit" class="btn btn-primary btn-outline" v-on:click="addEmployee">Dodaj</button>
@@ -146,7 +114,7 @@ export default {
     Multiselect
   },
   data: () => ({
-    inputEmployeeModel: {
+    employeeInputModel: {
       name: "",
       lastName: "",
       specialization: "",
@@ -163,66 +131,14 @@ export default {
     selectedproject: [],
     errors: [],
     alert: "",
-    options2: [
-      {
-        text: "1",
-        value: "1"
-      },
-      {
-        text: "2",
-        value: "2"
-      },
-      {
-        text: "3",
-        value: "3"
-      },
-      {
-        text: "4",
-        value: "4"
-      },
-      {
-        text: "5",
-        value: "5"
-      }
-    ],
-    options3: [
-      {
-        text: "1",
-        value: "1"
-      },
-      {
-        text: "2",
-        value: "2"
-      },
-      {
-        text: "3",
-        value: "3"
-      },
-      {
-        text: "4",
-        value: "4"
-      },
-      {
-        text: "5",
-        value: "5"
-      }
-    ],
-    options: [
-      {
-        text: "1",
-        value: "1"
-      },
-      {
-        text: "2",
-        value: "2"
-      },
-      {
-        text: "3",
-        value: "3"
-      }
-    ],
-    multipleModel: ["1"],
-    multipleModel2: ["1"],
+    optionsLevel: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"}, {text: "4", value: "4"}, {text: "5", value: "5"} ],
+    optionsRating: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"}, {text: "4", value: "4"}, {text: "5", value: "5"} ],
+    optionsSpeaking: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"} ],
+    optionsReading: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"} ],
+    optionsWriting: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"} ],
+
+    multipleModelRating: ["1"],
+    multipleModelLevel: ["1"],
     file: null
   }),
   created() {
@@ -255,20 +171,25 @@ export default {
     methods: {
         addEmployee() {
           axios
-            .post("http://localhost:4444/api/projects/AddEmployee", this.inputEmployeeModel)
+            .post("http://localhost:4444/api/projects/AddEmployee", this.employeeInputModel)
             .then(response => {
               console.log("response "+response.data)
             });
-            // axios
-            // .post("http://localhost:4444/api/projects/AddEmployeeToProject", {
-            //   body: this.projects
-            // })
-            // .then(response => {});
-            // axios
-            // .post("http://localhost:4444/api/projects/AddTechnologyToProject", {
-            //   body: this.projects
-            // })
-            // .then(response => {});
+          axios
+            .post("http://localhost:4444/api/projects/AddLanguageToEmployee", this.employeeInputModel)
+            .then(response => {
+              console.log("response "+response.data)
+            });
+          axios
+            .post("http://localhost:4444/api/projects/AddSkillToEmployee", this.employeeInputModel)
+            .then(response => {
+              console.log("response "+response.data)
+            });
+          axios
+            .post("http://localhost:4444/api/projects/AddProjectToEmployee", this.employeeInputModel)
+            .then(response => {
+              console.log("response "+response.data)
+            });
           },
     }
 };

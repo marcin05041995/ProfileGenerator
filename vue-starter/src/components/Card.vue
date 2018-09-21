@@ -27,8 +27,10 @@
             </h5>
           </td>
         </tr>
-        <router-link to="/editemployee">
-          <b-btn style=" background: #f64a35" size="sm">Edytuj</b-btn>&nbsp;
+        <router-link to="/editemployee?id+" employee.id >
+          <div>
+              <b-btn style="background: #f64a35"  size="sm">Edytuj</b-btn>&nbsp;
+          </div>
         </router-link>
       </div>
     </div>
@@ -196,6 +198,7 @@ export default {
   data: () => ({
     tableData: [],
     employee: [],
+    employees: [],
     employee: {},
     errors: [],
     alert: "",
@@ -258,6 +261,11 @@ export default {
     },
     edit(row) {
       alert(`Edit: ${row}`);
+    },
+    editemployee(id) {
+      router.push({
+      path: `/editemployee?id=` + id
+      });
     },
     remove(row) {
       alert(`Remove: ${row}`);

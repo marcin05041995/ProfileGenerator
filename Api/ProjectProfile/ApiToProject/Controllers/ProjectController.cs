@@ -167,7 +167,7 @@ namespace ApiToProject.Controllers
             context.Projects.Add(new Project()
             {
                 Name = inputProjectModel.Name,
-                Description = inputProjectModel.Description,
+                Title=inputProjectModel.Title,
                 ClientSector = inputProjectModel.ClientSector,
                 StartDate = inputProjectModel.StartDate,
                 EndDate = inputProjectModel.EndDate,

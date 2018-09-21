@@ -16,23 +16,13 @@
           <b-input class="mb-1" v-model="employees.specialization"></b-input>
         </b-form-group>
 
-        <!-- <b-form-group label="Ocena">
-        <b-input class="mb-1" />
-      </b-form-group> -->
         <b-form-group label="Rating">
-          <b-radio-group v-model="multipleModel" :options="options3" />
+          <b-radio-group v-model="multipleModelRating" :options="optionsRating" />
         </b-form-group>
 
         <b-form-group label="Kadencja">
           <b-input class="mb-1" />
         </b-form-group>
-
-        <!-- <b-form-group label="Projekt">
-          <b-select v-model="selectedproject" />
-          <option v-for=" proj in projekts">
-            {{proj.name}}
-          </option>
-        </b-form-group> -->
 
         <b-form-group label="Projekt">
           <multiselect v-model="selectedproject" label="name" track-by="id" placeholder="Wybierz projekt" :options="projects" :multiple="true"
@@ -55,20 +45,20 @@
 
             <div class="row">
               <b-form-group label="Stopień w mowie">
-                <b-radio-group v-model="multipleModel" :options="options" />
+                <b-radio-group v-model="multipleModelSpeaking" :options="optionsSpeaking" />
 
               </b-form-group>
             </div>
 
             <div class="row">
               <b-form-group label="Stopień w czytaniu">
-                <b-radio-group v-model="multipleModel" :options="options" />
+                <b-radio-group v-model="multipleModelReading" :options="optionsReading" />
               </b-form-group>
             </div>
 
             <div class="row">
               <b-form-group label="Stopień w piśmie">
-                <b-radio-group v-model="multipleModel" :options="options" />
+                <b-radio-group v-model="multipleModelWriting" :options="optionsWriting" />
               </b-form-group>
             </div>
           </div>
@@ -87,7 +77,7 @@
         </b-form-group>
 
         <b-form-group label="Stopień">
-          <b-radio-group v-model="multipleModel" :options="options2" />
+          <b-radio-group v-model="multipleModelLevel" :options="optionsLevel" />
         </b-form-group>
 
         <button type="submit" class="btn  btn-outline" style=" background: #f64a35">Dodaj</button>
@@ -135,65 +125,17 @@ export default {
     selectedproject: [],
     errors: [],
     alert: "",
-    options2: [
-      {
-        text: "1",
-        value: "1"
-      },
-      {
-        text: "2",
-        value: "2"
-      },
-      {
-        text: "3",
-        value: "3"
-      },
-      {
-        text: "4",
-        value: "4"
-      },
-      {
-        text: "5",
-        value: "5"
-      }
-    ],
-    options3: [
-      {
-        text: "1",
-        value: "1"
-      },
-      {
-        text: "2",
-        value: "2"
-      },
-      {
-        text: "3",
-        value: "3"
-      },
-      {
-        text: "4",
-        value: "4"
-      },
-      {
-        text: "5",
-        value: "5"
-      }
-    ],
-    options: [
-      {
-        text: "1",
-        value: "1"
-      },
-      {
-        text: "2",
-        value: "2"
-      },
-      {
-        text: "3",
-        value: "3"
-      }
-    ],
-    multipleModel: ["1"],
+
+    optionsLevel: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"}, {text: "4", value: "4"}, {text: "5", value: "5"} ],
+    optionsRating: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"}, {text: "4", value: "4"}, {text: "5", value: "5"} ],
+    optionsSpeaking: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"} ],
+    optionsReading: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"} ],
+    optionsWriting: [{text: "1",value: "1" }, {text: "2", value: "2"}, {text: "3", value: "3"} ],
+    multipleModelRating: ["1"],
+    multipleModelLevel: ["1"],
+    multipleModelSpeaking: ["1"],
+    multipleModelReading: ["1"],
+    multipleModelWriting: ["1"],
     file: null
   }),
   created() {
@@ -221,6 +163,11 @@ export default {
       .catch(e => {
         this.errors.push(e);
       });
+  },
+  methods:{
+    frontEndDateFormat: function(date) {
+      return moment(date, "YYYY-MM-DD").format("DD/MM/YYYY");
+    }
   }
 };
 </script>

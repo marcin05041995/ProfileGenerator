@@ -20,12 +20,13 @@
           </b-btn>
           </router-link>
 
-          <b-btn variant="outline-danger borderless icon-btn" class="btn-xs" @click.prevent="remove(props.row.id)">
+          <b-btn variant="outline-danger borderless icon-btn" class="btn-xs"  @click.prevent="remove(props.row.id)"  >
             <i class="ion ion-md-close"></i>
           </b-btn>
         </div>
       </template>
-
+<!-- @click.prevent="remove(props.row.id)" -->
+ <!-- v-on:click="deleteProject(id)" -->
 
       <template slot="child_row" slot-scope="props">
         <tr>
@@ -118,6 +119,7 @@ export default {
         // );
         // this.project.endDate = this.frontEndDateFormat(response.data.endDate);
         this.projects = response.data;
+
       })
       .catch(e => {
         this.errors.push(e);
@@ -137,9 +139,15 @@ export default {
     },
     remove(row) {
       alert(`Remove: ${row}`);
-    }
+    },
+    // deleteProject(id){
+    //   axios
+    //   .delete("http://localhost:4444/api/projects/DeleteProject?id="+id)
+    //   .then(response => {console.log("response "+response.data)}
+    //   );
+   }
   }
-};
+
 </script>
 
 <style scoped>

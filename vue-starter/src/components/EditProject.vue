@@ -107,9 +107,7 @@ export default {
         this.project.name = response.data.name;
         this.project.title = response.data.title;
         this.project.clientSector = response.data.clientSector;
-        this.project.startDate = this.frontEndDateFormat(
-          response.data.startDate
-        );
+        this.project.startDate = this.frontEndDateFormat(response.data.startDate);
         this.project.endDate = this.frontEndDateFormat(response.data.endDate);
 
         for (let index = 0; index < response.data.profiles.length; index++) {

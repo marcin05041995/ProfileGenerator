@@ -12817,11 +12817,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\it-solve\\Desktop\\Api\\ProjectProfile\\ApiToProject\\ApiToProject.csproj",
+      "projectUniqueName": "C:\\Users\\it-solve\\Desktop\\Project\\Project\\Api\\ProjectProfile\\ApiToProject\\ApiToProject.csproj",
       "projectName": "ApiToProject",
-      "projectPath": "C:\\Users\\it-solve\\Desktop\\Api\\ProjectProfile\\ApiToProject\\ApiToProject.csproj",
+      "projectPath": "C:\\Users\\it-solve\\Desktop\\Project\\Project\\Api\\ProjectProfile\\ApiToProject\\ApiToProject.csproj",
       "packagesPath": "C:\\Users\\it-solve\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\it-solve\\Desktop\\Api\\ProjectProfile\\ApiToProject\\obj\\",
+      "outputPath": "C:\\Users\\it-solve\\Desktop\\Project\\Project\\Api\\ProjectProfile\\ApiToProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
