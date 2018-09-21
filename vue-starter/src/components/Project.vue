@@ -15,12 +15,12 @@
         <div>
 
            <router-link to="/editproject">
-          <b-btn variant="outline-success borderless icon-btn" class="btn-xs" @click.prevent="editproject(props.row.id)">
+          <b-btn variant="outline-success borderless icon-btn" class="btn-xs" @click.prevent="edit(props.row.id)" v-on:click="editproject(props.row.id)">
             <i class="ion ion-md-create"></i>
           </b-btn>
           </router-link>
 
-          <b-btn variant="outline-danger borderless icon-btn" class="btn-xs"  @click.prevent="remove(props.row.id)"  >
+          <b-btn variant="outline-danger borderless icon-btn" class="btn-xs"  @click.prevent="remove(props.row.id)" v-on:click="deleteProject(props.row.id)" >
             <i class="ion ion-md-close"></i>
           </b-btn>
         </div>
@@ -82,6 +82,7 @@ import axios from "axios";
 import Vue from "vue";
 import router from "../router";
 import moment from "moment";
+import swal from 'sweetalert';
 
 import { ClientTable } from "vue-tables-2";
 
@@ -140,13 +141,15 @@ export default {
     remove(row) {
       alert(`Remove: ${row}`);
     },
-    // deleteProject(id){
-    //   axios
-    //   .delete("http://localhost:4444/api/projects/DeleteProject?id="+id)
-    //   .then(response => {console.log("response "+response.data)}
-    //   );
+     deleteProject(id){
+       axios
+       .delete("http://localhost:4444/api/projects/DeleteProject?id="+id);
+       location.reload();
+      //  .then(response => {console.log("response "+response.data)}
+      //  );
    }
   }
+}
 
 </script>
 

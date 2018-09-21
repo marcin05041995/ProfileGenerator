@@ -47,7 +47,7 @@
 
 
 
-        <button type="submit" class="btn btn-primary btn-outline">Dodaj</button>
+        <button type="submit" class="btn btn-primary btn-outline" v-on:click="editProject(id)">Edytuj</button>
         <router-link to="/project">
           <button type="submit" class="btn btn-primary btn-outline">
             Wróć</button>
@@ -163,12 +163,9 @@ export default {
         return decodeURI(results[1]) || 0;
       }
     },
-    editProject() {
+    editProject(id) {
           axios
-            .post("http://localhost:4444/api/projects/EditProject", this.project)
-            .then(response => {
-              console.log("response "+response.data)
-            });
+            .put("http://localhost:4444/api/projects/EditProject?id="+id);
    }
   }
 }

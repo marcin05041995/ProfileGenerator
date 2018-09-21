@@ -204,8 +204,9 @@ namespace ApiToProject.Controllers
         public IActionResult DeleteProject(Guid Id)
         {
             Project project = context.Projects.Find(Id);
-            //context.Projects.Remove(project);
+            
             project.IsArchive = true;
+            context.Projects.Remove(project);//
 
             context.SaveChanges();
             return StatusCode((int)HttpStatusCode.OK);

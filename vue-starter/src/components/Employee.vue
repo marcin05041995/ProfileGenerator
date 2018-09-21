@@ -17,11 +17,12 @@
           <b-btn variant="outline-success borderless icon-btn" class="btn-xs" @click.prevent="cardEmployee(props.row.id)">
             <i class="ion ion-md-filing"></i>
           </b-btn>
-          <b-btn variant="outline-danger borderless icon-btn" class="btn-xs" @click.prevent="remove(props.row.id)">
+          <b-btn variant="outline-danger borderless icon-btn" class="btn-xs"  @click.prevent="remove(props.row.id)"  v-on:click="deleteEmployee(props.row.id)"><!-- v-on:click="deleteEmployee(id)" @click.prevent="remove(props.row.id)" -->
             <i class="ion ion-md-close"></i>
           </b-btn>
         </div>
       </template>
+
 
 
       <template slot="child_row" slot-scope="props">
@@ -93,14 +94,19 @@ export default {
     edit(row) {
       alert(`Edit: ${row}`);
     },
-    remove(row) {
-      alert(`Remove: ${row}`);
-    },
     cardEmployee(id) {
       router.push({
         path: `/card?id=` + id
       });
+    },
+    remove(row) {
+      alert(`Remove: ${row}`);
+    },
+    deleteEmployee(id){
+      axios
+      .delete("http://localhost:4444/api/employees/DeleteEmployee");
+      location.reload();
+      }
     }
   }
-};
 </script>
