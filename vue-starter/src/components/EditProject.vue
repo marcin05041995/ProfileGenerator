@@ -10,15 +10,15 @@
         <b-card-body class="pb-2">
 
        <b-form-group label="Nazwa">
-        <b-input class="mb-1" v-model="project.name" />
+        <b-input class="mb-1" v-model="inputProjectModel.name" />
       </b-form-group>
 
       <b-form-group label="Tytuł">
-        <b-input class="mb-1" v-model="project.title" />
+        <b-input class="mb-1" v-model="inputProjectModel.title" />
       </b-form-group>
 
       <b-form-group label="Klient Sektor">
-        <b-input class="mb-1" v-model="project.clientSector" />
+        <b-input class="mb-1" v-model="inputProjectModel.clientSector" />
       </b-form-group>
 
       <b-form-group label="Technologie">
@@ -30,10 +30,10 @@
         </b-form-group>
 
       <b-form-group label="Data rozpoczęcia projektu">
-        <b-input class="mb-1" v-model="project.startDate "></b-input>
+        <b-input class="mb-1" v-model="inputProjectModel.startDate "></b-input>
       </b-form-group>
       <b-form-group label="Data zakończenia projektu">
-        <b-input class="mb-1" v-model="project.endDate"> </b-input>
+        <b-input class="mb-1" v-model="inputProjectModel.endDate"> </b-input>
       </b-form-group>
 
         <b-form-group label="Pracownik">
@@ -47,7 +47,7 @@
 
 
 
-        <button type="submit" class="btn btn-primary btn-outline" v-on:click="editProject(id)">Edytuj</button>
+        <button type="submit" class="btn btn-primary btn-outline" v-on:click="editProject()">Edytuj</button>
         <router-link to="/project">
           <button type="submit" class="btn btn-primary btn-outline">
             Wróć</button>
@@ -82,14 +82,14 @@ export default {
     Multiselect
   },
   data: () => ({
-    tableData: [],
-    project: {
+    inputProjectModel: {
       name: "",
       title: "",
       clientSector: "",
       startDate: "",
       endDate: ""
     },
+    tableData: [],
     employees: [],
     technologies: [],
     errors: [],
@@ -104,11 +104,11 @@ export default {
     axios
       .get(`http://localhost:4444/api/projects/GetProject?id=` + id)
       .then(response => {
-        this.project.name = response.data.name;
-        this.project.title = response.data.title;
-        this.project.clientSector = response.data.clientSector;
-        this.project.startDate = this.frontEndDateFormat(response.data.startDate);
-        this.project.endDate = this.frontEndDateFormat(response.data.endDate);
+        this.inputProjectModel.name = response.data.name;
+        this.inputProjectModel.title = response.data.title;
+        this.inputProjectModel.clientSector = response.data.clientSector;
+        this.inputProjectModel.startDate = this.frontEndDateFormat(response.data.startDate);
+        this.inputProjectModel.endDate = this.frontEndDateFormat(response.data.endDate);
 
         for (let index = 0; index < response.data.profiles.length; index++) {
           response.data.profiles[index].fullname =
@@ -163,9 +163,9 @@ export default {
         return decodeURI(results[1]) || 0;
       }
     },
-    editProject(id) {
+    editProject() {
           axios
-            .put("http://localhost:4444/api/projects/EditProject?id="+id);
+            .put("http://localhost:4444/api/projects/EditProject",this.inputProjectModel);
    }
   }
 }

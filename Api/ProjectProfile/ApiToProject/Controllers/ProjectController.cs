@@ -186,8 +186,7 @@ namespace ApiToProject.Controllers
 
             if (project == null)
                 return new StatusCodeResult((int)HttpStatusCode.NotFound);
-
-            //project.Title = inputProjectModel.Name;
+        
             project.Name = inputProjectModel.Name;
             project.Title = inputProjectModel.Title;
             project.ClientSector = inputProjectModel.ClientSector;

@@ -104,7 +104,7 @@ export default {
     },
     deleteEmployee(id){
       axios
-      .delete("http://localhost:4444/api/employees/DeleteEmployee");
+      .delete("http://localhost:4444/api/employees/DeleteEmployee?id="+id);
       location.reload();
       }
     }

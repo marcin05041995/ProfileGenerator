@@ -18,11 +18,11 @@
         </b-form-group>
 
         <b-form-group label="Lata pracy">
-          <b-input class="mb-1" v-model="employeeInputModel.yearsOfWork" />
+          <b-input class="mb-1" v-model="employeeInputModel.overallTenure" />
         </b-form-group>
 
         <b-form-group label="Rating">
-          <b-radio-group v-model="multipleModelRating" :options="optionsRating" />
+          <b-radio-group v-model="employeeInputModel.rating" :options="optionsRating" />
         </b-form-group>
 
         <b-form-group label="Projekt">
@@ -102,7 +102,7 @@
 <script>
 import axios from "axios";
 import Vue from "vue";
-
+import swal from 'sweetalert';
 import Multiselect from "vue-multiselect";
 
 export default {
@@ -119,7 +119,7 @@ export default {
       lastName: "",
       specialization: "",
       rating: 0,
-      yearsOfWork: ""
+      overallTenure: ""
     },
     employees: [],
     languages: [],
@@ -171,24 +171,30 @@ export default {
     methods: {
         addEmployee() {
           axios
-            .post("http://localhost:4444/api/projects/AddEmployee", this.employeeInputModel)
+            .post("http://localhost:4444/api/employees/AddEmployee", this.employeeInputModel)
             .then(response => {
               console.log("response "+response.data)
             });
           axios
-            .post("http://localhost:4444/api/projects/AddLanguageToEmployee", this.employeeInputModel)
+            .post("http://localhost:4444/api/employees/AddLanguageToEmployee", this.selectedlanguage)
             .then(response => {
               console.log("response "+response.data)
             });
           axios
-            .post("http://localhost:4444/api/projects/AddSkillToEmployee", this.employeeInputModel)
+            .post("http://localhost:4444/api/employees/AddSkillToEmployee", this.selectedskill)
             .then(response => {
               console.log("response "+response.data)
             });
           axios
-            .post("http://localhost:4444/api/projects/AddProjectToEmployee", this.employeeInputModel)
+            .post("http://localhost:4444/api/employees/AddProjectToEmployee", this.selectedproject)
             .then(response => {
               console.log("response "+response.data)
+            });
+
+          swal({
+          title: "Sukces!",
+          text: "Dodano pracownika do bazy!",
+          icon: "success",
             });
           },
     }

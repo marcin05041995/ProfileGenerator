@@ -181,9 +181,7 @@ namespace ApiToProject.Controllers
 
             return StatusCode(200, employes);
         }
-
-
-
+               
 
         [HttpPost]
         [Route("AddEmployee")]
